@@ -18,9 +18,9 @@ import (
 	"golang.org/x/tools/imports"
 )
 
-const genPackage = "github.com/mailru/easyjson/gen"
-const pkgWriter = "github.com/mailru/easyjson/jwriter"
-const pkgLexer = "github.com/mailru/easyjson/jlexer"
+const genPackage = "github.com/userclouds/easyjson/gen"
+const pkgWriter = "github.com/userclouds/easyjson/jwriter"
+const pkgLexer = "github.com/userclouds/easyjson/jlexer"
 
 var buildFlagsRegexp = regexp.MustCompile("'.+'|\".+\"|\\S+")
 
