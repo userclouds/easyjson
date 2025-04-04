@@ -14,6 +14,8 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+
+	"golang.org/x/tools/imports"
 )
 
 const genPackage = "github.com/mailru/easyjson/gen"
@@ -215,5 +217,11 @@ func (g *Generator) Run() error {
 	if err != nil {
 		return err
 	}
+
+	out, err = imports.Process(g.OutName, out, nil)
+	if err != nil {
+		return err
+	}
+
 	return ioutil.WriteFile(g.OutName, out, 0644)
 }
