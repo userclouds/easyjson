@@ -462,6 +462,7 @@ func (g *Generator) genSliceArrayDecoder(t reflect.Type) error {
 	fname := g.getDecoderName(t)
 	typ := g.getType(t)
 
+	fmt.Fprintf(g.out, "// %s implements json.Unmarshaler interface\n", fname)
 	fmt.Fprintln(g.out, "func "+fname+"(in *jlexer.Lexer, out *"+typ+") {")
 	fmt.Fprintln(g.out, " isTopLevel := in.IsStart()")
 	err := g.genTypeDecoderNoCheck(t, "*out", fieldTags{}, 1)
@@ -484,6 +485,7 @@ func (g *Generator) genStructDecoder(t reflect.Type) error {
 	fname := g.getDecoderName(t)
 	typ := g.getType(t)
 
+	fmt.Fprintf(g.out, "// %s implements json.Unmarshaler interface\n", fname)
 	fmt.Fprintln(g.out, "func "+fname+"(in *jlexer.Lexer, out *"+typ+") {")
 	fmt.Fprintln(g.out, "  isTopLevel := in.IsStart()")
 	fmt.Fprintln(g.out, "  if in.IsNull() {")

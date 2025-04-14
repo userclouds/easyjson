@@ -389,6 +389,7 @@ func (g *Generator) genSliceArrayMapEncoder(t reflect.Type) error {
 	fname := g.getEncoderName(t)
 	typ := g.getType(t)
 
+	fmt.Fprintf(g.out, "// %s implements json.Marshaler interface\n", fname)
 	fmt.Fprintln(g.out, "func "+fname+"(out *jwriter.Writer, in "+typ+") {")
 	err := g.genTypeEncoderNoCheck(t, "in", fieldTags{}, 1, false)
 	if err != nil {
@@ -406,6 +407,7 @@ func (g *Generator) genStructEncoder(t reflect.Type) error {
 	fname := g.getEncoderName(t)
 	typ := g.getType(t)
 
+	fmt.Fprintf(g.out, "// %s implements json.Marshaler interface\n", fname)
 	fmt.Fprintln(g.out, "func "+fname+"(out *jwriter.Writer, in "+typ+") {")
 	fmt.Fprintln(g.out, "  out.RawByte('{')")
 	fmt.Fprintln(g.out, "  first := true")
